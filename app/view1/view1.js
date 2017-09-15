@@ -9,6 +9,9 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('View1Ctrl', ["$scope", "$firebaseObject", function($scope, $firebaseObject) {
+    var ref = firebase.database().ref().child("data");
 
+    var syncObject = $firebaseObject(ref);
+    syncObject.$bindTo($scope, "data");
 }]);

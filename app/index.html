@@ -39,5 +39,22 @@
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <script>
+      // Initialize Firebase
+      var config = {
+          apiKey: "AIzaSyAziXmCpo9uRxJCyLkmgndOM83N3Sj9NVA",
+          authDomain: "example-firebase-e3604.firebaseapp.com",
+          databaseURL: "https://example-firebase-e3604.firebaseio.com/",
+          projectId: "example-firebase-e3604",
+          storageBucket: "example-firebase-e3604.appspot.com",
+          messagingSenderId: "1054065411501"
+      };
+      firebase.initializeApp(config);
+  </script>
 </body>
 </html>
