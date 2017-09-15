@@ -54,4 +54,17 @@ describe('my app', function() {
         });
 
     });
+    describe('view4', function() {
+
+        beforeEach(function() {
+            browser.get('index.html#!/view4');
+        });
+
+
+        it('should render view4 when user navigates to /view4', function() {
+            expect(element.all(by.css('[ng-view] p')).first().getText()).
+            toMatch(/partial for view 4/);
+        });
+
+    });
 });
