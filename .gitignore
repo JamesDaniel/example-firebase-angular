@@ -1,5 +1,7 @@
-**/.DS_Store
-nbproject
-manifest.mf
-build.xml
-
+logs/*
+!.gitkeep
+node_modules/
+bower_components/
+tmp
+.DS_Store
+.idea
