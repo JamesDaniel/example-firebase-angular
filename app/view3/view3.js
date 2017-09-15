@@ -10,11 +10,15 @@ angular.module('myApp.view3', ['ngRoute'])
 }])
 
 .controller('View3Ctrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
-    var ref = firebase.database().ref().child("messages");
-    $scope.messages = $firebaseArray(ref);
-    $scope.addMessage = function() {
-        $scope.messages.$add({
-            text: $scope.newMessageText
+    $scope.createUser = function (uEmail, uPassword) {
+        firebase.auth().createUserWithEmailAndPassword(uEmail, uPassword).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log("There was an error: ");
+            console.log("Error code: " + errorCode);
+            console.log("Error message: " + errorMessage);
+            // ...
         });
     };
 }]);
