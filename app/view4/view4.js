@@ -20,4 +20,8 @@ angular.module('myApp.view4', ['ngRoute'])
             console.log("An Authentication error occurred: " + error);
         });
     };
+
+    $scope.logout = function () {
+        auth.$signOut();
+    };
 }]);
