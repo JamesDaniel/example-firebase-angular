@@ -9,16 +9,19 @@ angular.module('myApp.view3', ['ngRoute'])
   });
 }])
 
-.controller('View3Ctrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
-    $scope.createUser = function (uEmail, uPassword) {
-        firebase.auth().createUserWithEmailAndPassword(uEmail, uPassword).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log("There was an error: ");
-            console.log("Error code: " + errorCode);
-            console.log("Error message: " + errorMessage);
-            // ...
+.controller('View3Ctrl', ['$scope', '$firebaseAuth', function($scope, $firebaseAuth) {
+    var Auth = $firebaseAuth();
+
+    $scope.createUser = function(email, password) {
+        $scope.message = null;
+        $scope.error = null;
+
+        // Create a new user
+        Auth.$createUserWithEmailAndPassword(email, password)
+            .then(function(firebaseUser) {
+                console.log("User created with uid: " + firebaseUser.uid);
+            }).catch(function(error) {
+            console.log("An error occurred: " + error);
         });
     };
 }]);
