@@ -9,6 +9,15 @@ angular.module('myApp.view4', ['ngRoute'])
   });
 }])
 
-.controller('view4Ctrl', ['$scope', function($scope) {
+.controller('view4Ctrl', ['$scope', '$firebaseAuth', function($scope, $firebaseAuth) {
     console.log('in view 4');
+    var auth = $firebaseAuth();
+
+    $scope.loginUser = function (email, password) {
+        auth.$signInWithEmailAndPassword(email, password).then(function(firebaseUser) {
+            console.log("User Logged in successfully with uid: " + firebaseUser.uid);
+        }).catch(function(error) {
+            console.log("An Authentication error occurred: " + error);
+        });
+    };
 }]);
