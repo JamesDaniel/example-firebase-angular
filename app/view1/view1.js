@@ -9,9 +9,20 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ["$scope", "$firebaseObject", function($scope, $firebaseObject) {
-    var ref = firebase.database().ref().child("data");
+.controller('View1Ctrl', ["$scope", "$firebaseObject", '$firebaseAuth', function($scope, $firebaseObject) {
+    if (firebase.auth().currentUser !== null) {
+        console.log("user id: " + firebase.auth().currentUser.uid);
 
-    var syncObject = $firebaseObject(ref);
-    syncObject.$bindTo($scope, "data");
+        var ref = firebase.database().ref().child("users/" + firebase.auth().currentUser.uid);
+
+        var syncUserObject = $firebaseObject(ref);
+        syncUserObject.$bindTo($scope, "data");
+
+        // var ref = firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+        //     username: $scope.data.text
+        // });
+
+    } else {
+        console.log("No user currently logged in");
+    }
 }]);
